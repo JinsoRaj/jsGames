@@ -24,8 +24,7 @@ window.onload = function (){
     function(event) {
         var mousePosition = findMousePosition(event);
         bat1Y = mousePosition.y -(BAT_HEIGHT/2);
-    }
-);
+    });
 }
 
 function findMousePosition(event){
@@ -44,38 +43,36 @@ function moveElements() {
     ballY = ballY + ballYSpeed;
     //ballXSpeed = ballXSpeed + 1;
 
-    //to left
+    //go left
     if (ballX >= canvas.width) {
-        if (ballY > bat2Y && ballY < bat2Y+ BAT_HEIGHT) {
+        if (ballY > bat2Y && ballY < bat2Y + BAT_HEIGHT) {
             ballXSpeed = -ballXSpeed;
         } else {
             reset();
         }
     }
-
-    //to right
+    //go right
     if (ballX <= 0) {
-        if (ballY > bat1Y && ballY < bat1Y+ BAT_HEIGHT) {
+        if (ballY > bat1Y && ballY < bat1Y + BAT_HEIGHT) {
             ballXSpeed = -ballXSpeed;
         } else {
             reset();
         }
     }
-
+    //go up
     if (ballY >= canvas.height) {
         ballYSpeed = -ballYSpeed;
     }
-
-    //to right
+    //go down
     if (ballY <= 0) {
         ballYSpeed = -ballYSpeed;
     }
 }
 
 function drawCanvas() {
-    createRectangle(0,0,canvas.width,canvas.height,"black"); //full canvas
-    createRectangle(0,bat1Y,BAT_THICK,BAT_HEIGHT,"white"); //bat1
-    createRectangle(canvas.width-BAT_THICK,bat2Y,BAT_THICK,BAT_HEIGHT,"white"); //bat2
+    createRectangle(0, 0, canvas.width, canvas.height, "black"); //full canvas
+    createRectangle(0, bat1Y, BAT_THICK, BAT_HEIGHT, "white"); //bat1
+    createRectangle(canvas.width-BAT_THICK, bat2Y, BAT_THICK, BAT_HEIGHT, "white"); //bat2
     createBall(ballX, ballY, 10, "white"); //ball
     
 }
@@ -83,17 +80,17 @@ function drawCanvas() {
 function createBall(centerX, centerY, radius, color) {
     canvasContext.fillStyle = color;
     canvasContext.beginPath();
-    canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
+    canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true); //0 to 360 c.clock
     canvasContext.fill();
 }
 
-function createRectangle(leftX,topY,width,height,color){
+function createRectangle(leftX, topY, width, height, color){
     canvasContext.fillStyle = color;
-    canvasContext.fillRect(leftX,topY,width,height);
+    canvasContext.fillRect(leftX, topY, width, height);
 }
 
 function reset() {
-    ballXSpeed = -ballXSpeed;
+    ballXSpeed = -ballXSpeed; //reverse direction after each reset
     ballX = canvas.width/2;
     ballY = canvas.height/2;
 }
