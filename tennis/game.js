@@ -38,9 +38,22 @@ function findMousePosition(event){
     };
 }
 
+//bat2 auto movement
+function botBat() {
+    var botBatCenter = bat2Y + (BAT_HEIGHT/2);
+
+    if(botBatCenter < ballY-38) {
+        bat2Y += 7;
+    } else if(botBatCenter > ballY+38){
+        bat2Y -= 7;
+    }
+}
+
 function moveElements() {
-    ballX = ballX + ballXSpeed;
-    ballY = ballY + ballYSpeed;
+    botBat(); //computer player
+
+    ballX += ballXSpeed; //horizontal
+    ballY += ballYSpeed; //vertical
     //ballXSpeed = ballXSpeed + 1;
 
     //go left
